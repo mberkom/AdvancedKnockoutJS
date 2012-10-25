@@ -1,8 +1,8 @@
-# KO Module-View-ViewModel Pattern #
+# KO Module-View-ViewModel Architecture #
 *By Michael Berkompas ([github/mberkom](https://github.com/mberkom))*
 
 
-Pioneered by Microsoft in their SilverLight platform, the MVVM pattern empowers UI heavy web apps to write their client-side JavaScript cleanly and without unnecessary glue between the model and UI.  [KnockoutJS](http://knockoutjs.com/), the leading JavaScript implementation of the MVVM pattern, has become a popular library for writing MVVM UIs for the browser.  While certainly powerful, vanilla KnockoutJS leaves much to be desired when writing large multi-page web applications.  This article provides some insights into how you can build upon the featureset of KnockoutJS and write scalable UIs for large web applications.
+Pioneered by Microsoft in their SilverLight platform, the MVVM architecture empowers UI heavy web apps to write their client-side JavaScript cleanly and without unnecessary glue between the model and UI.  [KnockoutJS](http://knockoutjs.com/), the leading JavaScript implementation of the MVVM pattern, has become a popular library for writing MVVM UIs for the browser.  While certainly powerful, vanilla KnockoutJS leaves much to be desired when writing large multi-page web applications.  This article provides some insights into how you can build upon the featureset of KnockoutJS and write scalable UIs for large web applications.
 
 
 First, let’s define the requirements of a large-scale web application.  
@@ -28,7 +28,7 @@ Now that we’ve got that out of the way, let’s see how vanilla KnockoutJS lin
 Okay, so Knockout needs to be extended a little.  In fact, the generic MVVM pattern doesn’t really work when you have a bunch of interactions, modules, pages, etc...  The answer is to replace it with something very similar.  
 
 
-Enter the Module-View-ViewModel(s) pattern.  You can think of the “Module” portion as a self contained widget that declares its own Knockout instance.  The “View” stays basically the same and remains HTML, but the way bindings are declared and accessed changes. The “ViewModel(s)” are a set of viewmodels specific to the module.  They each contain a serialize method that returns a clean model and a parse method that accepts a clean model.  
+Enter the Module-View-ViewModel(s) architecture.  You can think of the “Module” portion as a self contained widget that declares its own Knockout instance.  The “View” stays basically the same and remains HTML, but the way bindings are declared and accessed changes. The “ViewModel(s)” are a set of viewmodels specific to the module.  They each contain a serialize method that returns a clean model and a parse method that accepts a clean model.  
 
 
 **1. Module**
@@ -225,7 +225,7 @@ var volumeDiscount = function (setupData) {
 ## Conclusion ##
 
 
-Combined with a couple other libraries and the Module-View-ViewModel pattern, KnockoutJS can truly become an excellent solution for large-scale web applications.  Let’s go back over the five requirements for a large-scale web app and see how this slight variation on the MVVM pattern works out.
+Combined with a couple other libraries and the Module-View-ViewModel architecture, KnockoutJS can truly become an excellent solution for large-scale web applications.  Let’s go back over the five requirements for a large-scale web app and see how this slight variation on the MVVM architecture works out.
 
 
 1. (Organized Code) - We can split our code apart into files and folders that are named according to their contents.  Because we understand things as Modules, we expect that there would be a primary module file, a viewmodel(s) file, and at least one HTML view. 
