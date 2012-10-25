@@ -201,7 +201,7 @@ See an example implementation in the TodoMVC labs [here](http://todomvc.com/labs
 Viewmodels stay basically the same.  However, because there is no longer a concept of models, your viewmodels will all need to provide methods for serializing and parsing out and into clean data models.  Here’s an example:
 
 ```javascript
-models.volumeDiscount = function (setupData) {
+var volumeDiscount = function (setupData) {
     var self = {};
     setupData = setupData || {};
 
