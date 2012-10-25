@@ -1,4 +1,4 @@
-AdvancedKnockoutJS
+Advanced KnockoutJS
 ==================
 
-Articles on KnockoutJS for Power Users
+*Articles on KnockoutJS for Power Users*
