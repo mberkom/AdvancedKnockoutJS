@@ -36,7 +36,7 @@ Enter the Module-View-ViewModel(s) pattern.  You can think of the “Module” p
 
 The module is a JS object that provides methods for starting and stoping a KO instance.  Included are properties for an HTML template, and declaring your bindings.  It also contains the parent module viewmodel which controls all the KO interactions.  Here’s an example of what it could look like.
 
-
+	```javascript
 	/**
 	Prototype object for creating individual KnockoutJS modules
 
@@ -146,14 +146,14 @@ The module is a JS object that provides methods for starting and stoping a KO in
 	
 	    return module;
 	});
-	
+	```
 
 **2. The View**
 
 
 Views continue to be HTML, but instead of using the default KO method of declaring a data-bind attribute that contains our bindings, we declare our bindings in our module and reference them via a key very much like css.  To do this, we use the [Class Binding Provider](https://github.com/rniemeyer/knockout-classBindingProvider), a project started by Ryan Niemeyer.  The bindings are declared like this: 
 
-
+	```javascript
 	var bindings = {
 	   title: function(context, classes) {
 	       return {
@@ -172,15 +172,15 @@ Views continue to be HTML, but instead of using the default KO method of declari
 	       }
 	   }
 	};
-
+	```
 
 And referenced like this: 
 
-
+	```html
 	<ul data-class="list.items">
 	   <li> ... </li>
 	</ul>
-
+	```
 
 There are several benefits to declaring the bindings in JS.  One of the most important is that your module can take care of registering them and can also maintain control over the bindings.
 
@@ -200,26 +200,27 @@ See an example implementation in the TodoMVC labs [here](http://todomvc.com/labs
 
 Viewmodels stay basically the same.  However, because there is no longer a concept of models, your viewmodels will all need to provide methods for serializing and parsing out and into clean data models.  Here’s an example:
 
-	
+	```javascript
 	models.volumeDiscount = function (setupData) {
-	        var self = {};
-	        setupData = setupData || {};
-	
-	
-	        self.quantity = ko.observable(setupData.quantity || 0).extend({ numeric: 0 });
-	        self.markup = ko.observable(setupData.markup || "");
-	
-	
-	        self.serialize = function() {
-	            return {
-	                quantity: self.quantity(),
-	                markup: self.markup()
-	            };
-	        };
-	
-	
-	        return self;
-	    };
+        var self = {};
+        setupData = setupData || {};
+
+
+        self.quantity = ko.observable(setupData.quantity || 0).extend({ numeric: 0 });
+        self.markup = ko.observable(setupData.markup || "");
+
+
+        self.serialize = function() {
+            return {
+                quantity: self.quantity(),
+                markup: self.markup()
+            };
+        };
+
+
+        return self;
+    };
+	```
 
 ## Conclusion ##
 
