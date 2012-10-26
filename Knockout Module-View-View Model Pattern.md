@@ -19,7 +19,7 @@ Now that we’ve got that out of the way, let’s see how vanilla KnockoutJS lin
 
 
 1. (Organized Code) - KnockoutJS doesn’t provide much in the way of code organization.  In reality, it’s a library, and not a true framework.  However, there are best practices about how to initialize your viewmodels and where you should put your ko.applyBindings() call.  For a large-scale web application, we need more than this.
-2. (Stand-alone Code Modules) - KnockoutJS doesn’t understand the concept of a code module.  However, it does work well with [RequireJS](http://requirejs.org/) and AMD.  
+2. (Stand-alone Code Modules) - KnockoutJS doesn’t understand the concept of a code module.  However, it does work well with the AMD format using [RequireJS](http://requirejs.org/).  
 3. (Start & Stop Modules) - Knockout allows you to fire up multiple instances on one browser page, but requires significant boilerplate code to remove an instance completely.  This can be mitigated by writing an object that provides start & stop methods that your KO modules can then inherit from. I call this object the “Module” and it’s explained more later.
 4. (I/O with data from a server) - Knockout viewmodels can contain methods for parsing out a clean model as well as serializing a data feed into a KO viewmodel.  KO comes built-in with AJAX methods, but [jQuery](http://jquery.com/) is probably a better idea to create those interactions.
 5. (Debuggable code) - Unfortunately, due to the fact that KO declares its bindings in HTML, many binding related errors are difficult to debug.  It becomes especially difficult to debug when you use a service like [TraceKit](https://github.com/csnover/TraceKit) to log JS errors from your users.  For this reason and several others, the default view-viewmodel binding mechanism in Knockout will need to be replaced in order to support scalable web applications.  
@@ -225,14 +225,14 @@ var volumeDiscount = function (setupData) {
 ## Conclusion ##
 
 
-Combined with a couple other libraries and the Module-View-View Model pattern, KnockoutJS can truly become an excellent solution for large-scale web applications.  Let’s go back over the five requirements for a large-scale web app and see how this slight variation on the MVVM pattern works out.
+Combined with a couple other libraries and the Module-View-View Model pattern, KnockoutJS is an excellent solution for large-scale web applications.  Let’s go back over the five requirements for a large-scale web app and see how this slight variation on the MVVM pattern works out.
 
 
-1. (Organized Code) - We can split our code apart into files and folders that are named according to their contents.  Because we understand things as Modules, we expect that there would be a primary module file, a viewmodel(s) file, and at least one HTML view. 
-2. (Stand-alone Code Modules) - By using RequireJS to load up our modules and handle dependencies, we can now write our code in an organized, modular, and testable way.  
-3. (Start and Stop Modules) - The concept of a module provides us with the boilerplate code to start and stop a KO instance as well as handle dynamically loaded html.  
-4. (I/O with data from a server) - Viewmodels provide a clean way to get at their data, as well as initialize themselves with setup data.  
-5. (Debuggable code) - Because we declare bindings in the JS module and reference them using the Class Binding Provider, all our code becomes comparatively easy to debug. 
+1. (Organized Code) - We can split our code apart into files and folders that are named according to their contents.  Because we understand things as Modules, we expect that there would be a primary module file, a viewmodel(s) file(s), and at least one HTML view file. 
+2. (Stand-alone Code Modules) - By using RequireJS to load up our modules and handle dependencies, we can write our code in an organized, modular, and testable way.  
+3. (Start and Stop Modules) - The concept of a module provides us with the boilerplate code to start and stop a KO instance as well as handle dynamically loaded html. Advanced UIs no longer have to be loaded all at once as components can (and should) be loaded only when requested.
+4. (I/O with data from a server) - Viewmodels provide a clean way manage your data in the context of the view while also providing methods for creating or accepting a clean data model.  
+5. (Debuggable code) - Because we declare Knockout view bindings in the JS module and reference them using the Class Binding Provider, all our code becomes comparatively easy to debug. We now have breakpoints, line numbers, and more.
 
 
-With that overview of the possibilities for large-scale web applications, I hope you’ll consider using it in your next project.  MVVM can be a scalable and competitive solution for advanced web application interfaces.
+KnockoutJS combined with a little creativity is a scalable and competitive solution for advanced web application interfaces. With that overview of some of the possibilities, I hope you’ll consider using it in your next project.  
